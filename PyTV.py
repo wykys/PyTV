@@ -15,7 +15,8 @@
 #
 # created by wykys 2015
 #
-# this code switching tv channel in kolejnet networ.
+# This program runs the VLC player with the parameters necessary for playing
+# the network stream. It is designed for use in networks KolejNet.
 #
 
 import os
