@@ -39,21 +39,18 @@ class PyTV:
         os.system("killall vlc")
         os.system("cvlc {0} &".format(addr))
     "Add station"
-    def addStations(self, name=False, addr=False):
-        
+    def addStations(self, name=False, addr=False):        
         tmp = False
         fr = open("stations.csv", "r")
         tmp = fr.readlines()    
         fr.close()
+        tmp.pop(0) # delete head table
 
         if tmp != False:
             for i in tmp:
                 i = i.split(',')
                 name = i[0].strip()
-                addr = i[1].strip()
-
-                if name == "name":
-                    continue
+                addr = i[1].strip()                
 
                 if type(name) == str and type(addr) == str:
                     self.column += 1
