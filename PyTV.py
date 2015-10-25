@@ -34,7 +34,7 @@ class PyTV:
         # start application
         self.addStations()
         self.runGUI()
-    "Play select station in vlc"
+    "Play selected station in vlc"
     def play(self, addr):
         os.system("killall vlc")
         os.system("cvlc {0} &".format(addr))
@@ -62,7 +62,7 @@ class PyTV:
     "Run PyTV GUI"
     def runGUI(self):
         self.win.mainloop()    
-    "When is destroy windows"
+    "When program window is destroyed"
     def __del__(self):
         os.system("killall vlc")
 
