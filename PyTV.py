@@ -19,7 +19,7 @@
 # the network stream. It is designed for use in networks KolejNet.
 #
 
-import os
+import os, platform, psutil
 import Tkinter as tk
 
 class PyTV:
@@ -31,13 +31,24 @@ class PyTV:
         self.row = 0
         self.column = 0
         self.stations = {}
+        self.RouteToVLC = '"C:\Program Files (x86)\VideoLAN\VLC\\vlc.exe"'    #if you are a windows user please insert a valid route to vlc
         # start application
         self.addStations()
         self.runGUI()
     "Play selected station in vlc"
     def play(self, addr):
-        os.system("killall vlc")
-        os.system("cvlc {0} &".format(addr))
+        if platform.system() == 'Windows':
+            try:
+                for proc in psutil.process_iter():
+                    if proc.name == 'vlc.exe':
+                        proc.kill()
+            except:
+                pass
+            os.system('start "" /b {0} {1}'.format(self.RouteToVLC, addr))
+            return
+        else:
+            os.system("killall vlc")
+            os.system("cvlc {0} &".format(addr))
     "Add station"
     def addStations(self, name=False, addr=False):        
         tmp = False
