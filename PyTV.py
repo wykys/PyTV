@@ -58,73 +58,33 @@ class PyTV:
         tmp.pop(0) # delete head table
 
         if tmp != False:
-            i = 0
+            textcolor = '#FF0066'
             for l in tmp:
                 if l == '#FIT VUTBR\n':
-                    break
-                l = l.split(',')
-                name = l[0].strip()
-                addr = l[1].strip() 
-                i += 1              
-
-                if type(name) == str and type(addr) == str:
-                    self.column += 1
-                    if self.column > self.StationInLine:
-                        self.row += 1
-                        self.column = 1
-                    tk.Button(self.win, text=name, font="Courier 15 bold", command=lambda a=addr: self.play(a), bg='#333333', fg='#FF0066').grid(row=self.row, column=self.column, padx=2, pady=2, sticky=tk.W+tk.E)
-                    self.stations[name] = addr
-            self.row += 1
-            self.column = 0
-            i += 1
-            for l in tmp[i:]:
+                    self.row += 1
+                    self.column = 0
+                    textcolor = '#00FFFF'
+                    continue
                 if l == '#CZ RADIO\n':
-                    break
-                l = l.split(',')
-                name = l[0].strip()
-                addr = l[1].strip() 
-                i += 1              
-
-                if type(name) == str and type(addr) == str:
-                    self.column += 1
-                    if self.column > self.StationInLine:
-                        self.row += 1
-                        self.column = 1
-                    tk.Button(self.win, text=name, font="Courier 15 bold", command=lambda a=addr: self.play(a), bg='#333333', fg='#00FFFF').grid(row=self.row, column=self.column, padx=2, pady=2, sticky=tk.W+tk.E)
-                    self.stations[name] = addr
-            self.row += 1
-            self.column = 0
-            i += 1
-            for l in tmp[i:]: 
+                    self.row += 1
+                    self.column = 0
+                    textcolor = '#FF9933'
+                    continue
                 if l == '#SK RADIO\n':
-                    break
+                    self.row += 1
+                    self.column = 0
+                    textcolor = '#66FF33'
+                    continue
                 l = l.split(',')
                 name = l[0].strip()
                 addr = l[1].strip() 
-                i += 1              
 
                 if type(name) == str and type(addr) == str:
                     self.column += 1
                     if self.column > self.StationInLine:
                         self.row += 1
                         self.column = 1
-                    tk.Button(self.win, text=name, font="Courier 15 bold", command=lambda a=addr: self.play(a), bg='#333333', fg='#FF9933').grid(row=self.row, column=self.column, padx=2, pady=2, sticky=tk.W+tk.E)
-                    self.stations[name] = addr
-            self.row += 1
-            self.column = 0
-            i += 1
-            for l in tmp[i:]:
-                l = l.split(',')
-                name = l[0].strip()
-                addr = l[1].strip() 
-                i += 1              
-
-                if type(name) == str and type(addr) == str:
-                    self.column += 1
-                    if self.column > self.StationInLine:
-                        self.row += 1
-                        self.column = 1
-                    tk.Button(self.win, text=name, font="Courier 15 bold", command=lambda a=addr: self.play(a), bg='#333333', fg='#66FF33').grid(row=self.row, column=self.column, padx=2, pady=2, sticky=tk.W+tk.E)
+                    tk.Button(self.win, text=name, font="Courier 15 bold", command=lambda a=addr: self.play(a), bg='#333333', fg=textcolor).grid(row=self.row, column=self.column, padx=2, pady=2, sticky=tk.W+tk.E)
                     self.stations[name] = addr
     "Run PyTV GUI"
     def runGUI(self):
